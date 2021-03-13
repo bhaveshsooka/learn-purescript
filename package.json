@@ -1,0 +1,18 @@
+{
+  "name": "euler-problems",
+  "version": "1.0.0",
+  "description": "bhavesh-euler-solutions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhaveshsooka/euler-problems.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhaveshsooka/euler-problems/issues"
+  },
+  "homepage": "https://github.com/bhaveshsooka/euler-problems#readme",
+  "devDependencies": {
+    "long": "^4.0.0"
+  }
+}

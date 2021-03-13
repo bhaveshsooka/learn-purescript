@@ -4,7 +4,7 @@ You can edit this file as you like.
 -}
 { name = "bhavesh-euler-solutions"
 , dependencies =
-  [ "console", "effect", "integers", "lists", "psci-support" ]
+  [ "longs", "console", "effect", "integers", "lists", "psci-support" ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
 }

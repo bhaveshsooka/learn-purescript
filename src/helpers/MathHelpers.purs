@@ -1,17 +1,11 @@
 module MathHelpers where
 
-import Data.List (List(Nil), (:), length)
--- import Data.Long (Long, fromInt, fromString, rem)
--- import Data.Maybe
+import Converters (longtoInt)
+import Data.List (List(..), filter, length, range, (:))
+import Data.Long (fromInt, toUnsigned)
+import Data.Long.Unsigned (Long, rem)
 import Data.Ord ((>))
-import Prelude (mod, (*), (+), (-), (/), (/=), (<), (==), (>=))
-
--- stringToLong :: String -> Long
--- stringToLong s
---   = case (fromString s) of
---       Just a -> a
---       Nothing -> fromInt 0
-
+import Prelude (map, mod, (#), ($), (*), (+), (-), (/), (/=), (<), (==), (>=))
 
 getSqrt :: Int -> Int
 getSqrt num
@@ -60,49 +54,60 @@ getFactors num
       = innerGetFactors n (divisor + 1) (divisor : (n / divisor) : factors)
 
 
--- getSqrt' :: Long -> Long
--- getSqrt' num
---   | num < fromInt 0
---   = fromInt 0
--- getSqrt' num
---   = innerSqrt num $ fromInt 2
---   where
---     innerSqrt :: Long -> Long -> Long
---     innerSqrt n sq
---       | (sq * sq) == n
---       = sq
---     innerSqrt n sq
---       | (sq * sq) > n
---       = sq - fromInt 1
---     innerSqrt n sq
---       = innerSqrt n (sq + fromInt 1)
+getSqrt' :: Long -> Long
+getSqrt' num
+  | num < (toUnsigned $ fromInt 0)
+  = toUnsigned $ fromInt 0
+getSqrt' num
+  = innerSqrt num $ toUnsigned $ fromInt 2
+  where
+    innerSqrt :: Long -> Long -> Long
+    innerSqrt n sq
+      | (sq * sq) == n
+      = sq
+    innerSqrt n sq
+      | (sq * sq) > n
+      = sq - (toUnsigned $ fromInt 1)
+    innerSqrt n sq
+      = innerSqrt n (sq + (toUnsigned $ fromInt 1))
+
+isPrime' :: Long -> Boolean
+isPrime' num
+  = (length (getFactors' num)) == 0
+
+getFactors' :: Long -> List Long
+getFactors' num
+  | (longtoInt $ getSqrt' num) == 0
+  = (Nil)
+getFactors' num
+  = innerGetFactors num (getDivisors num) (Nil)
+  where
+    innerGetFactors :: Long -> List Long -> List Long -> List Long
+    innerGetFactors n Nil listOfFactors
+      = listOfFactors
+    innerGetFactors n (currentDivisor : remainingDivisors) listOfFactors
+      = innerGetFactors n remainingDivisors ((n / currentDivisor) : currentDivisor : listOfFactors)
+
+    getDivisors :: Long -> List Long
+    getDivisors n
+      = range 2 (longtoInt $ getSqrt' num)
+        # map (\e -> toUnsigned $ fromInt e)
+        # filter (\e -> (isDivisible num e) == true)
+      where
+        isDivisible :: Long -> Long -> Boolean
+        isDivisible number divisor
+          = (number `rem` divisor) == (toUnsigned $ fromInt 0)
+      
 
 
--- isPrime' :: Long -> Boolean
--- isPrime' num
---   = innerIsPrime (Nil) num (fromInt 1)
---   where
---     innerIsPrime :: List Long -> Long -> Long -> Boolean
---     innerIsPrime factors n divisor
---       | divisor > getSqrt' n
---       = fromInt (length factors) == fromInt 1
---     innerIsPrime factors n divisor
---       | n `mod` divisor /= fromInt 0
---       = innerIsPrime factors n (divisor + (fromInt 1))
---     innerIsPrime factors n divisor
---       = innerIsPrime (divisor : factors) n (divisor + (fromInt 1))
 
--- getFactors' :: Long -> List Long
--- getFactors' num
---   = innerGetFactors num (fromInt 2) (Nil)
---   where    
---     innerGetFactors :: Long -> Long -> List Long -> List Long
---     innerGetFactors n divisor factors
---       | divisor >= getSqrt' n
---       = factors
---     innerGetFactors n divisor factors
---       |  n `rem` divisor /= fromInt 0
---       = innerGetFactors n (divisor + (fromInt 1)) factors
---     innerGetFactors n divisor factors
---       = innerGetFactors n (divisor + (fromInt 1)) (divisor : (n / divisor) : factors)
- 
+
+
+
+
+
+
+
+
+
+

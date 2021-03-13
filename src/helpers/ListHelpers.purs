@@ -1,9 +1,9 @@
 module ListHelpers where
 
 import Data.List (List(Nil), (:))
--- import Data.Long (Long)
--- import MathHelpers (stringToLong)
-import Prelude (negate, (<=))
+import Data.Long (fromInt, toUnsigned)
+import Data.Long.Unsigned (Long)
+import Prelude (negate, ($), (<=))
 
 getMaxElement :: List Int -> Int
 getMaxElement list
@@ -19,15 +19,15 @@ getMaxElement list
       = innerGetMaxElement es e
 
 
--- getMaxElement' :: List Long -> Long
--- getMaxElement' list
---   = innerGetMaxElement list Long.minValue
---   where 
---     innerGetMaxElement :: List Long -> Long -> Long
---     innerGetMaxElement Nil currentMax
---       = currentMax
---     innerGetMaxElement (e : es) currentMax
---       | e <= currentMax
---       = innerGetMaxElement es currentMax
---     innerGetMaxElement (e : es) currentMax
---       = innerGetMaxElement es e
+getMaxElement' :: List Long -> Long
+getMaxElement' list
+  = innerGetMaxElement list $ toUnsigned $ fromInt 0
+  where 
+    innerGetMaxElement :: List Long -> Long -> Long
+    innerGetMaxElement Nil currentMax
+      = currentMax
+    innerGetMaxElement (e : es) currentMax
+      | e <= currentMax
+      = innerGetMaxElement es currentMax
+    innerGetMaxElement (e : es) currentMax
+      = innerGetMaxElement es e
