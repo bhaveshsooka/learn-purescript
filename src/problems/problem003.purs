@@ -15,4 +15,3 @@ solve
     # getFactors'
     # filter (\e -> isPrime' e == true)
     # getMaxElement'
-    

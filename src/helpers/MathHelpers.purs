@@ -97,17 +97,3 @@ getFactors' num
         isDivisible :: Long -> Long -> Boolean
         isDivisible number divisor
           = (number `rem` divisor) == (toUnsigned $ fromInt 0)
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
