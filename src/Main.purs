@@ -4,7 +4,7 @@ import Prelude
 import Effect ( Effect )
 import Effect.Console ( log )
 
-import Problem003 as ProblemModule
+import Problem004 as ProblemModule
 
 main :: Effect Unit
 main 
