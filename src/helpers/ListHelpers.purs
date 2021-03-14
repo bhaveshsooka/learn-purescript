@@ -1,9 +1,9 @@
 module ListHelpers where
 
-import Data.List (List(Nil), (:))
+import Data.List (List(Nil), range, (:))
 import Data.Long (fromInt, toUnsigned)
 import Data.Long.Unsigned (Long)
-import Prelude (negate, ($), (<=))
+import Prelude (map, negate, (#), ($), (<=))
 
 getMaxElement :: List Int -> Int
 getMaxElement list
@@ -18,6 +18,10 @@ getMaxElement list
     innerGetMaxElement (e : es) currentMax
       = innerGetMaxElement es e
 
+longRange :: Int -> Int -> List Long
+longRange start end
+  = range start end
+    # map (\e -> toUnsigned $ fromInt e)
 
 getMaxElement' :: List Long -> Long
 getMaxElement' list
