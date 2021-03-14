@@ -53,8 +53,8 @@ getFactors num
     innerGetFactors n divisor factors
       = innerGetFactors n (divisor + 1) (divisor : (n / divisor) : factors)
 
-sq :: Long -> Long
-sq n = n * n 
+sqLong :: Long -> Long
+sqLong n = n * n 
 
 getSqrt' :: Long -> Long
 getSqrt' num

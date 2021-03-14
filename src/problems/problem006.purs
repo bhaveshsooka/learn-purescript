@@ -2,7 +2,7 @@ module Problem006 where
 
 import Data.Long (fromInt, toUnsigned)
 import Data.Long.Unsigned (Long)
-import MathHelpers (sq)
+import MathHelpers (sqLong)
 import Prelude (($), (*), (+), (-), (/))
 
 solve :: Long
@@ -19,5 +19,5 @@ solve
 
     sumSquareDiff :: Long -> Long
     sumSquareDiff limit
-      = (sq $ sumOfNaturalNumbers limit) - sumOfSquareNumbers limit
+      = (sqLong $ sumOfNaturalNumbers limit) - sumOfSquareNumbers limit
  
