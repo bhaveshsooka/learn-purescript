@@ -1,19 +1,10 @@
 module Converters where
 
-import Data.Maybe
-
-import Data.Long (fromInt, toUnsigned)
-import Data.Long.Unsigned (Long, fromString, toInt)
-import Prelude (($))
+import Data.Long (Long, fromInt, fromString)
+import Data.Maybe (Maybe(..))
 
 stringToLong :: String -> Long
-stringToLong s
-  = case (fromString s) of
-      Just a -> a
-      Nothing -> toUnsigned $ fromInt 0
-
-longtoInt :: Long -> Int
-longtoInt num
-  = case (toInt num) of
-      Just a -> a
-      Nothing -> 0
+stringToLong s =
+  case (fromString s) of
+    Just a -> a
+    Nothing -> fromInt 0

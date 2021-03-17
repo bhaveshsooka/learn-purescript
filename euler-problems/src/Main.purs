@@ -1,14 +1,12 @@
 module Main where
 
-import Prelude
-import Effect ( Effect )
-import Effect.Console ( log )
-
-import Problem007 as ProblemModule
+import Effect (Effect)
+import Effect.Console (log)
+import Prelude (Unit, show, (#))
+import Problem001 as ProblemModule
 
 main :: Effect Unit
-main 
+main
   = ProblemModule.solve
     # show
     # log
-

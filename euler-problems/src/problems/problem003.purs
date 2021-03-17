@@ -2,9 +2,8 @@ module Problem003 where
 
 import Converters (stringToLong)
 import Data.List (filter)
-import Data.Long.Unsigned (Long)
-import ListHelpers (getMaxElement')
-import MathHelpers (getFactors', isPrime')
+import Data.Long (Long)
+import LongHelpers (getFactors, isPrime, getMaxElement)
 import Prelude ((#), (==))
 
 -- | Possible inputs 13195, 600851475143
@@ -12,6 +11,6 @@ import Prelude ((#), (==))
 solve :: Long
 solve
   = stringToLong "600851475143"
-    # getFactors'
-    # filter (\e -> isPrime' e == true)
-    # getMaxElement'
+    # getFactors
+    # filter (\e -> isPrime e == true)
+    # getMaxElement

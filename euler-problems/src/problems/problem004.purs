@@ -1,32 +1,38 @@
 module Problem004 where
 
-import Data.Int (toNumber)
+import Data.Int (fromString, toNumber)
+import Data.List (filter, range)
+import Data.Maybe (fromMaybe)
 import Data.Number.Format (toString)
-import Prelude (negate, ($), (*), (+), (<=), (==), (>), (||))
+import IntHelpers (getMaxElement)
+import Prelude (map, negate, otherwise, (#), ($), (*), (+), (<$>), (<*>), (<=), (==), (>), (||))
 import StringHelpers (isPalindrome)
 
 solve :: Int
 solve 
-   = outer 100 100 999 999 (-1)
-   -- = (*) <$> range 100 999 <*> range 100 999
-   --  # map (\e -> toString $ toNumber e)
-   --  # filter (\e -> isPalindrome $ e)
-   --  # map (\e ->  fromMaybe (negate 2147483648) (fromString e))
-   --  # getMaxElement
+   -- = recursiveSoln 100 100 999 999 (-1)
+   = listSoln 100 999
    where
-      outer :: Int -> Int -> Int -> Int -> Int -> Int
-      outer a b innerLimit outerLimit max
+      recursiveSoln :: Int -> Int -> Int -> Int -> Int -> Int
+      recursiveSoln a b innerLimit outerLimit max
          | a > outerLimit
          = max
-      outer a b innerLimit outerLimit max
-         = outer (a + 1) (a + 1) innerLimit outerLimit (inner a b innerLimit max)
+         | otherwise
+         = recursiveSoln (a + 1) (a + 1) innerLimit outerLimit (innerRecursiveSoln a b innerLimit max)
+         where
+            innerRecursiveSoln :: Int -> Int -> Int -> Int -> Int
+            innerRecursiveSoln innerA innerB limit innerMax
+               | innerB > limit
+               = innerMax
+               | (isPalindrome $ toString $ toNumber (innerA * innerB)) == false || (innerA * innerB) <= innerMax
+               = innerRecursiveSoln innerA (innerB + 1) limit innerMax
+               | otherwise
+               = innerRecursiveSoln innerA (innerB + 1) limit (innerA * innerB)
       
-      inner :: Int -> Int -> Int -> Int -> Int
-      inner a b limit max
-         | b > limit
-         = max
-      inner a b limit max
-         | (isPalindrome $ toString $ toNumber (a*b)) == false || (a * b) <= max
-         = inner a (b + 1) limit max
-      inner a b limit max
-         = inner a (b + 1) limit (a * b)
+      listSoln :: Int -> Int -> Int
+      listSoln min max 
+         = (*) <$> range min max <*> range min max
+            # map (\e -> toString $ toNumber e)
+            # filter (\e -> isPalindrome $ e)
+            # map (\e ->  fromMaybe (negate 2147483648) (fromString e))
+            # getMaxElement

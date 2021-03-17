@@ -1,18 +1,16 @@
 module Problem005 where
 
 import Data.List (List(Nil), (:))
-import Data.Long (fromInt, toUnsigned)
-import Data.Long.Unsigned (Long)
-import ListHelpers (longRange)
-import Prelude (lcm, ($))
-
+import Data.Long (Long, fromInt)
+import LongHelpers (range)
+import Prelude (lcm)
 
 solve :: Long
 solve
-  = continuousLCM (longRange 11 20) (toUnsigned $ fromInt 1) 
+  = accumLCM (range (fromInt 11) (fromInt 20)) (fromInt 1) 
   where
-    continuousLCM :: List Long -> Long -> Long
-    continuousLCM Nil currentLcm
+    accumLCM :: List Long -> Long -> Long
+    accumLCM Nil currentLcm
       = currentLcm
-    continuousLCM (e : es) currentLcm
-      = continuousLCM es (lcm e currentLcm)
+    accumLCM (e : es) currentLcm
+      = accumLCM es (lcm e currentLcm)

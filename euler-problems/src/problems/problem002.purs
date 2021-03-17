@@ -1,7 +1,6 @@
 module Problem002 where
 
-import Prelude ( (+), (/=), mod )
-import Data.Ord ( (>) )
+import Prelude (mod, otherwise, (+), (/=), (>))
 
 solve :: Int
 solve
@@ -11,8 +10,7 @@ solve
     sumFibNums limit a b accumSum
       | a > limit
       = accumSum
-    sumFibNums limit a b accumSum
-      | a `mod` 2 /= 0 
+      | a `mod` 2 /= 0
       = sumFibNums limit b (a + b) accumSum
-    sumFibNums limit a b accumSum
+      | otherwise
       = sumFibNums limit b (a + b) (accumSum + a)
