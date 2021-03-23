@@ -10,6 +10,7 @@ You can edit this file as you like.
   , "lists"
   , "longs"
   , "numbers"
+  , "ordered-collections"
   , "psci-support"
   , "strings"
   ]
