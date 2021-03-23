@@ -3,8 +3,10 @@ A repo for scripts, apis, web projects, etc. that helped me learn purescript. Ea
 
 The following list gives a brief description of each project
 
-euler-problems
+- euler-problems
+
 Solutions to the https://projecteuler.net/about problems in Purescript 
 
-web
+- web
+
 TODO: To be completed
