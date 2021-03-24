@@ -1,7 +1,7 @@
 module Problem007 where
 
 import IntHelpers (isPrime)
-import Prelude (otherwise, (&&), (+), (==))
+import Prelude (otherwise, (+), (-), (==))
 
 solve :: Int
 solve
@@ -9,9 +9,6 @@ solve
   where
     getNthPrime :: Int -> Int -> Int -> Int
     getNthPrime n primeCount limit
-      | primeCount == limit && isPrime n == true
-      = n
-      | isPrime n == true
-      = getNthPrime (n + 1) (primeCount + 1) limit
-      | otherwise
-      = getNthPrime (n + 1) primeCount limit
+      | primeCount == limit = n - 1
+      | isPrime n == true   = getNthPrime (n + 1) (primeCount + 1) limit
+      | otherwise           = getNthPrime (n + 1) primeCount limit

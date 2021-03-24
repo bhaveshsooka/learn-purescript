@@ -6,7 +6,7 @@ import Prelude (Unit, show, (#))
 import Problem008 as ProblemModule
 
 main :: Effect Unit
-main
-  = ProblemModule.solve
-    # show
-    # log
+main =
+  ProblemModule.solve
+  # show
+  # log
