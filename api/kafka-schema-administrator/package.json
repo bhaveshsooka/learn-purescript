@@ -1,0 +1,16 @@
+{
+  "name": "kafka-schema-administrator",
+  "version": "1.0.0",
+  "description": "API to manage schemas on the confluent schema-registry programmatically",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Bhavesh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
