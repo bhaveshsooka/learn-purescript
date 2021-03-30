@@ -1,22 +1,26 @@
 module Main where
 
-import Prelude
-
+import AppController (healthCheck)
+import AuthorizationInterceptor (authorizationMiddleware)
 import BooksController (routerBook)
-import Effect (Effect)
+import Data.Array (take)
 import Effect.Class.Console (log)
-import ErrorHelpers (errorHandler, notFound)
-import Node.Express.App (App, all, listenHttp, useOnError)
-import Node.HTTP (Server)
+import HTTPure (Request, ResponseM, ServerM, fullPath, notFound, serve)
+import LoggerInterceptor (loggingMiddleware)
+import Prelude (bind, otherwise, pure, show, ($), (<>), (==), (>>>))
 
-app :: App
-app = do
-  routerBook
-  useOnError $ errorHandler 0
-  all "*" notFound
-
-main :: Effect Server
+main :: ServerM
 main = do
   port <- pure 8080
-  listenHttp app port \_ ->
-    log $ "Listening on " <> show port
+  serve 
+    port 
+    (middlewares router)
+    (log $ "Server now up on port " <> show port <> "\n\n")
+  where
+    middlewares = authorizationMiddleware >>> loggingMiddleware
+
+router :: Request -> ResponseM
+router req
+  | fullPath req == "/"                   = healthCheck
+  | take 2 req.path == ["api", "books"]   = routerBook req
+  | otherwise                             = notFound

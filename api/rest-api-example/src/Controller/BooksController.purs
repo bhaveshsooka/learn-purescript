@@ -1,38 +1,53 @@
 module BooksController where
 
-import Prelude
+import Data.Int (fromString)
+import Data.Maybe (Maybe(..))
+import Data.String (length)
+import HTTPure (Method(..), Request, ResponseM, badRequest, internalServerError, ok, (!@))
+import Prelude (otherwise, show, ($), (&&), (<>), (==), (>))
 
-import ErrorHelpers (errorHandler)
-import Node.Express.App (App, delete, get, post, put, useOnError)
-import Node.Express.Handler (Handler)
-import Node.Express.Request (getRouteParam)
-import Node.Express.Response (sendJson)
+-- | We can safely assume that the path is '/api/books*'
 
-routePath :: String
-routePath = "/api/books/"
+routerBook :: Request -> ResponseM
+routerBook req
+  | req.method == Get && (length $ req.path !@ 2) > 0
+    = getBook $ req.path !@ 2
+  
+  | req.method == Get
+    = getBooks req
 
-routerBook :: App
-routerBook = do
-  get routePath getBooks 
-  post routePath $ addBook
-  get (routePath <> ":id") getBook
-  put (routePath <> ":id") updateBook
-  delete (routePath <> ":id") deleteBook
-  useOnError $ errorHandler 400
+  | req.method == Post
+    = addBook req
+  
+  | req.method == Put
+    = updateBook $ req.path !@ 2
+  
+  | req.method == Delete
+    = deleteBook $ req.path !@ 2
+  
+  | otherwise
+    = internalServerError "Method not implemented"
 
-getBooks :: Handler
-getBooks = sendJson "list all books"
+getBooks :: Request -> ResponseM
+getBooks req = ok "list all books"
 
-addBook :: Handler
-addBook = sendJson "add a new book"
+getBook :: String -> ResponseM
+getBook bookId =
+  case fromString bookId of
+    Just a -> ok $ "retrieve book " <> show a <> "'s information"
+    Nothing -> badRequest "no book ID provided"
 
-getBook :: Handler
-getBook = do
-  id <- getRouteParam "id"
-  sendJson "retrieve a single book’s information"
+addBook :: Request -> ResponseM
+addBook req = ok $ "add a book "
 
-updateBook :: Handler
-updateBook = sendJson "update a single book’s information"
+updateBook :: String -> ResponseM
+updateBook bookId =
+  case fromString bookId of
+    Just a -> ok $ "update book " <> show a <> "'s information"
+    Nothing -> badRequest "no book ID provided"
 
-deleteBook :: Handler
-deleteBook = sendJson "delete a single book"
+deleteBook :: String -> ResponseM
+deleteBook bookId =
+  case fromString bookId of
+    Just a -> ok $ "delete book " <> show a
+    Nothing -> badRequest "no book ID provided"
