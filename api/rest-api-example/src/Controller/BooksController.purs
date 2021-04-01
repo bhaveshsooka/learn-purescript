@@ -1,10 +1,14 @@
 module BooksController where
 
+import Books
+
+import Data.Either (Either(..))
 import Data.Int (fromString)
 import Data.Maybe (Maybe(..))
 import Data.String (length)
 import HTTPure (Method(..), Request, ResponseM, badRequest, internalServerError, ok, (!@))
 import Prelude (otherwise, show, ($), (&&), (<>), (==), (>))
+import Simple.JSON (readJSON)
 
 -- | We can safely assume that the path is '/api/books*'
 
@@ -17,7 +21,7 @@ routerBook req
     = getBooks req
 
   | req.method == Post
-    = addBook req
+    = addBook req.body
   
   | req.method == Put
     = updateBook $ req.path !@ 2
@@ -37,8 +41,11 @@ getBook bookId =
     Just a -> ok $ "retrieve book " <> show a <> "'s information"
     Nothing -> badRequest "no book ID provided"
 
-addBook :: Request -> ResponseM
-addBook req = ok $ "add a book "
+addBook :: String -> ResponseM
+addBook body =
+  case readJSON body of
+    Right (r :: Book) -> ok $ show r
+    Left e -> badRequest $ show e
 
 updateBook :: String -> ResponseM
 updateBook bookId =
