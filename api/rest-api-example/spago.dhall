@@ -7,7 +7,7 @@ You can edit this file as you like.
   [ "console"
   , "effect"
   , "httpure"
-  , "now"
+  , "httpure-middleware"
   , "psci-support"
   , "simple-json"
   ]

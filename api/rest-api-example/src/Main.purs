@@ -4,9 +4,10 @@ import AppController (healthCheck)
 import AuthorizationInterceptor (authorizationMiddleware)
 import BooksController (routerBook)
 import Data.Array (take)
+import Data.Time.Duration (Milliseconds(..))
 import Effect.Class.Console (log)
 import HTTPure (Request, ResponseM, ServerM, fullPath, notFound, serve)
-import LoggerInterceptor (loggingMiddleware)
+import HTTPure.Middleware (developmentLogFormat, timeout)
 import Prelude (bind, otherwise, pure, show, ($), (<>), (==), (>>>))
 
 main :: ServerM
@@ -17,7 +18,7 @@ main = do
     (middlewares router)
     (log $ "Server now up on port " <> show port <> "\n\n")
   where
-    middlewares = authorizationMiddleware >>> loggingMiddleware
+    middlewares = (timeout $ Milliseconds 3000.0) >>> authorizationMiddleware >>> developmentLogFormat
 
 router :: Request -> ResponseM
 router req
