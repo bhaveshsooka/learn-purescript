@@ -6,8 +6,10 @@ import Data.Either (Either(..))
 import Data.Int (fromString)
 import Data.Maybe (Maybe(..))
 import Data.String (length)
+import Data.Time.Duration (Milliseconds(..))
+import Effect.Aff (delay)
 import HTTPure (Method(..), Request, ResponseM, badRequest, internalServerError, ok, (!@))
-import Prelude (otherwise, show, ($), (&&), (<>), (==), (>))
+import Prelude (discard, otherwise, show, ($), (&&), (<>), (==), (>))
 import Simple.JSON (readJSON)
 
 -- | We can safely assume that the path is '/api/books*'
@@ -33,7 +35,9 @@ routerBook req
     = internalServerError "Method not implemented"
 
 getBooks :: Request -> ResponseM
-getBooks req = ok "list all books"
+getBooks req = do
+  delay $ Milliseconds 5000.0
+  ok "list all books"
 
 getBook :: String -> ResponseM
 getBook bookId =
