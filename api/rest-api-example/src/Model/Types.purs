@@ -1,4 +1,4 @@
-module Books where
+module Types where
 
 type Book = 
   { title   :: String

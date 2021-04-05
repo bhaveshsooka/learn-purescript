@@ -1,6 +1,6 @@
 module BooksController where
 
-import Books
+import Types
 
 import Data.Either (Either(..))
 import Data.Int (fromString)
@@ -42,7 +42,7 @@ getBook :: String -> ResponseM
 getBook bookId =
   case fromString bookId of
     Just a -> ok $ "retrieve book " <> show a <> "'s information"
-    Nothing -> badRequest "no book ID provided"
+    Nothing -> invalidBookID
 
 addBook :: String -> ResponseM
 addBook body =
@@ -54,10 +54,13 @@ updateBook :: String -> ResponseM
 updateBook bookId =
   case fromString bookId of
     Just a -> ok $ "update book " <> show a <> "'s information"
-    Nothing -> badRequest "no book ID provided"
+    Nothing -> invalidBookID
 
 deleteBook :: String -> ResponseM
 deleteBook bookId =
   case fromString bookId of
     Just a -> ok $ "delete book " <> show a
-    Nothing -> badRequest "no book ID provided"
+    Nothing -> invalidBookID
+
+invalidBookID :: ResponseM
+invalidBookID = badRequest "invalid ID provided"
