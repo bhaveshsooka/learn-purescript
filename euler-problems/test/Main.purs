@@ -3,9 +3,11 @@ module Test.Main where
 import Prelude
 
 import Effect (Effect)
-import Effect.Console (log)
-import Test.EulerProblems (testAllSolutions)
+import Effect.Class.Console (log)
+import Test.Euler (testAllSolutions)
 
 main :: Effect Unit
-main
-  = testAllSolutions >>= log 
+main = do
+  _ <- testAllSolutions 100
+  log "Tests Done"
+  

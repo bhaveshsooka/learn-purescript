@@ -1,4 +1,4 @@
-module IntHelpers where
+module Euler.Internal.IntHelpers where
 
 import Data.List (List(Nil), filter, range, (:))
 import Prelude (mod, otherwise, (#), (*), (+), (-), (<), (<=), (==), (>))

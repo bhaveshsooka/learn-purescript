@@ -1,4 +1,4 @@
-module Problem001 where
+module Euler.Internal.Problem001 where
 
 import Prelude (mod, otherwise, (+), (-), (==), (||))
 

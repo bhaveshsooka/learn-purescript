@@ -1,12 +1,12 @@
-module Problem003 where
+module Euler.Internal.Problem003 where
 
-import Constants (longZero)
-import Converters (stringToLong)
 import Data.Foldable (maximum)
 import Data.List (filter)
 import Data.Long (Long)
 import Data.Maybe (Maybe(..))
-import LongHelpers (getDivisors, isPrime)
+import Euler.Internal.Constants (longZero)
+import Euler.Internal.Converters (stringToLong)
+import Euler.Internal.LongHelpers (getDivisors, isPrime)
 import Prelude ((#), (==))
 
 -- The prime factors of 13195 are 5, 7, 13 and 29.

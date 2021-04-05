@@ -1,12 +1,12 @@
-module Problem004 where
+module Euler.Internal.Problem004 where
 
 import Data.Foldable (maximum)
 import Data.Int (fromString, toNumber)
 import Data.List (filter, range)
 import Data.Maybe (Maybe, fromMaybe)
 import Data.Number.Format (toString)
+import Euler.Internal.StringHelpers (isPalindrome)
 import Prelude (map, negate, otherwise, (#), ($), (*), (+), (<$>), (<*>), (<=), (==), (>), (||))
-import StringHelpers (isPalindrome)
 
 -- A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 -- Find the largest palindrome made from the product of two 3-digit numbers.

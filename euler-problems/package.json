@@ -2,9 +2,6 @@
   "name": "euler-problems",
   "version": "1.0.0",
   "description": "bhavesh-euler-solutions",
-  "scripts": {
-    "install": "spago install"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bhaveshsooka/euler-problems.git"

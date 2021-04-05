@@ -1,8 +1,8 @@
-module Converters where
+module Euler.Internal.Converters where
 
-import Constants (longZero)
 import Data.Long (Long, fromString)
 import Data.Maybe (Maybe(..))
+import Euler.Internal.Constants (longZero)
 
 stringToLong :: String -> Long
 stringToLong s =

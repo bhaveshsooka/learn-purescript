@@ -1,4 +1,4 @@
-module StringHelpers where
+module Euler.Internal.StringHelpers where
 
 import Data.Array (reverse)
 import Data.String.CodeUnits (fromCharArray, toCharArray)

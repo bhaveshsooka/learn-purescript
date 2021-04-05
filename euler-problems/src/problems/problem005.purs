@@ -1,9 +1,9 @@
-module Problem005 where
+module Euler.Internal.Problem005 where
 
-import Constants (longOne)
 import Data.List (List(Nil), (:))
 import Data.Long (Long, fromInt)
-import LongHelpers (range)
+import Euler.Internal.Constants (longOne)
+import Euler.Internal.LongHelpers (range)
 import Prelude (lcm)
 
 -- 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.

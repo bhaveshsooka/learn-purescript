@@ -1,8 +1,8 @@
-module LongHelpers where
+module Euler.Internal.LongHelpers where
 
-import Constants (longOne, longOneNegative, longThree, longTwo, longZero)
 import Data.List (List(Nil), filter, singleton, (:))
 import Data.Long (Long)
+import Euler.Internal.Constants (longOne, longOneNegative, longThree, longTwo, longZero)
 import Prelude (mod, otherwise, (#), (*), (+), (-), (<), (<=), (==), (>))
 
 sq :: Long -> Long

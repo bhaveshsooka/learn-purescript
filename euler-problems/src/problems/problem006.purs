@@ -1,8 +1,8 @@
-module Problem006 where
+module Euler.Internal.Problem006 where
 
-import Constants (longOne, longTwo)
 import Data.Long (Long, fromInt)
-import LongHelpers (sq)
+import Euler.Internal.Constants (longOne, longTwo)
+import Euler.Internal.LongHelpers (sq)
 import Prelude (($), (*), (+), (-), (/))
 
 -- The sum of the squares of the first ten natural numbers is,

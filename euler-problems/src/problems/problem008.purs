@@ -1,12 +1,12 @@
-module Problem008 where
+module Euler.Internal.Problem008 where
 
-import Constants (longOne, longZero)
-import Converters (stringToLong)
 import Data.Array (drop, foldl, length, take, (:))
 import Data.Foldable (maximum)
 import Data.Long (Long)
 import Data.Maybe (Maybe(..))
 import Data.String.CodeUnits (singleton, toCharArray)
+import Euler.Internal.Constants (longOne, longZero)
+import Euler.Internal.Converters (stringToLong)
 import Prelude (map, otherwise, (#), (*), (<))
 
 -- The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.

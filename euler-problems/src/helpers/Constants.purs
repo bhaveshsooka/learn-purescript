@@ -1,4 +1,4 @@
-module Constants where
+module Euler.Internal.Constants where
 
 import Data.Long (Long, fromInt)
 import Prelude (negate, ($))
