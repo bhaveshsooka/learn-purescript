@@ -6,6 +6,7 @@ import BooksController (routerBook)
 import Data.Array (take)
 import Data.Time.Duration (Milliseconds(..))
 import Effect.Class.Console (log)
+import EulerController (routerEuler)
 import HTTPure (Request, ResponseM, ServerM, fullPath, notFound, serve)
 import HTTPure.Middleware (developmentLogFormat, timeout)
 import Prelude (bind, otherwise, pure, show, ($), (<>), (==), (>>>))
@@ -24,4 +25,5 @@ router :: Request -> ResponseM
 router req
   | fullPath req == "/"                   = healthCheck
   | take 2 req.path == ["api", "books"]   = routerBook req
+  | take 2 req.path == ["api", "euler"]   = routerEuler req
   | otherwise                             = notFound

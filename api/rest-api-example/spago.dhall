@@ -4,8 +4,10 @@ You can edit this file as you like.
 -}
 { name = "http-rest-api-example"
 , dependencies =
-  [ "console"
+  [ "affjax"
+  , "console"
   , "effect"
+  , "euler"
   , "httpure"
   , "httpure-middleware"
   , "psci-support"

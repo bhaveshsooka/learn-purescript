@@ -1,7 +1,7 @@
 {
-  "name": "kafka-schema-administrator",
+  "name": "rest-api-example",
   "version": "1.0.0",
-  "description": "API to manage schemas on the confluent schema-registry programmatically",
+  "description": "Example API in purescript",
   "directories": {
     "test": "test"
   },
@@ -10,7 +10,8 @@
   },
   "author": "Bhavesh",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1"
+  "devDependencies": {
+    "long": "^4.0.0",
+    "xhr2": "^0.2.1"
   }
 }
