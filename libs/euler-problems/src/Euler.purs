@@ -1,5 +1,6 @@
 module Euler where
 
+import CustomTypes (EulerResult(..))
 import Euler.Internal.Problem001 as Problem001
 import Euler.Internal.Problem002 as Problem002
 import Euler.Internal.Problem003 as Problem003
@@ -25,4 +26,4 @@ computeEulerAnswer questionNumber =
     8 -> show Problem008.solve
     9 -> show Problem009.solve
     10 -> show Problem010.solve
-    otherwise -> "Problem not solved as yet"
+    otherwise -> show NotSolved

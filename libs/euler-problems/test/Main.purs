@@ -8,6 +8,7 @@ import Test.Euler (testAllSolutions)
 
 main :: Effect Unit
 main = do
-  _ <- testAllSolutions 100
-  log "Tests Done"
+  log "----------------------------------------------------------------------------"
+  _ <- testAllSolutions 744
+  log "----------------------------------------------------------------------------"
   

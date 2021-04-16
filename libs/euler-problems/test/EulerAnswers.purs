@@ -1,9 +1,6 @@
 module Test.EulerAnswers where
 
-type EulerAnswer = {
-  questionNumber :: Int,
-  value :: String 
-}
+import CustomTypes (EulerAnswer)
 
 eulerAnswers :: Array EulerAnswer
 eulerAnswers = [
