@@ -4,15 +4,21 @@ You can edit this file as you like.
 -}
 { name = "bhavesh-euler-solutions"
 , dependencies =
-  [ "console"
+  [ "arrays"
+  , "console"
   , "effect"
+  , "foldable-traversable"
   , "integers"
   , "lists"
   , "longs"
+  , "maybe"
+  , "node-buffer"
+  , "node-fs"
   , "numbers"
-  , "ordered-collections"
+  , "prelude"
   , "psci-support"
   , "strings"
+  , "tuples"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
