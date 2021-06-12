@@ -30,7 +30,6 @@ handleQuestion questionNumber = do
     Right a -> ok a.body
 
 handleAnswer :: String -> ResponseM
--- handleAnswer questionNumber = ok $ "TODO : Compute answer and send for question=" <> questionNumber
 handleAnswer questionNumber = 
   case fromString questionNumber of
     Just a -> ok $ computeEulerAnswer a
