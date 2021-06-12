@@ -1,5 +1,6 @@
 module Euler.Internal.FileHelpers (
-  readQ008_1
+  readQ008_1,
+  readQ011_1
 ) where
 
 import Effect.Unsafe (unsafePerformEffect)
@@ -15,3 +16,6 @@ readInputFromResourceFile resourceFile = unsafePerformEffect $ readTextFile UTF8
 
 readQ008_1 :: String
 readQ008_1 = readInputFromResourceFile "q008_1.txt"
+
+readQ011_1 :: String
+readQ011_1 = readInputFromResourceFile "q011_1.txt"

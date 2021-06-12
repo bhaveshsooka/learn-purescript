@@ -11,6 +11,7 @@ import Euler.Internal.Problem007 as Problem007
 import Euler.Internal.Problem008 as Problem008
 import Euler.Internal.Problem009 as Problem009
 import Euler.Internal.Problem010 as Problem010
+import Euler.Internal.Problem011 as Problem011
 import Prelude (show)
 
 computeEulerAnswer :: Int -> String
@@ -26,4 +27,5 @@ computeEulerAnswer questionNumber =
     8 -> show Problem008.solve
     9 -> show Problem009.solve
     10 -> show Problem010.solve
-    otherwise -> show NotSolved
+    11 -> show Problem011.solve
+    _ -> show NotSolved
